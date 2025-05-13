@@ -1,6 +1,14 @@
 
-export const Home = () => {
+import Hero from "./components/Hero";
+import FeaturesSection from "./components/FeaturesSection";
+import AISection from "./components/AISection";
+export default function Home() {
   return (
-    <div>Home</div>
-  )
+    <div className="w-full ">
+      <Hero/>
+      <FeaturesSection/>
+      <AISection/>
+      
+    </div>
+  );
 }
