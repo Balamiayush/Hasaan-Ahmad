@@ -1,7 +1,11 @@
 'use client';
-
-import { FC } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 const icons = {
   operations: (
@@ -54,29 +58,161 @@ interface FeatureProps {
   color: string;
 }
 
-const Feature: FC<FeatureProps> = ({ icon, title, description, color }) => {
+const FeatureCard: FC<FeatureProps> = ({ icon, title, description, color }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const iconRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!cardRef.current) return;
+
+    // GSAP animation for card entry
+    gsap.from(cardRef.current, {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: cardRef.current,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    // Hover animations
+    const card = cardRef.current;
+    const content = contentRef.current;
+    const icon = iconRef.current;
+
+    const handleMouseEnter = () => {
+      gsap.to(card, {
+        y: -10,
+        scale: 1.02,
+        boxShadow: '0 25px 50px -12px rgba(124, 58, 237, 0.25)',
+        duration: 0.3,
+        ease: 'power2.out',
+      });
+      gsap.to(content, {
+        y: -5,
+        duration: 0.3,
+        ease: 'power2.out',
+      });
+      gsap.to(icon, {
+        scale: 1.2,
+        rotate: 5,
+        duration: 0.3,
+        ease: 'elastic.out(1, 0.5)',
+      });
+    };
+
+    const handleMouseLeave = () => {
+      gsap.to(card, {
+        y: 0,
+        scale: 1,
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        duration: 0.4,
+        ease: 'power2.out',
+      });
+      gsap.to(content, {
+        y: 0,
+        duration: 0.4,
+        ease: 'power2.out',
+      });
+      gsap.to(icon, {
+        scale: 1,
+        rotate: 0,
+        duration: 0.4,
+        ease: 'power2.out',
+      });
+    };
+
+    card.addEventListener('mouseenter', handleMouseEnter);
+    card.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      card.removeEventListener('mouseenter', handleMouseEnter);
+      card.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
+
   return (
-    <motion.div
-      className="p-6 flex flex-col items-start gap-4"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
+    <div
+      ref={cardRef}
+      className="relative bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 will-change-transform"
+      style={{
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+      }}
     >
-      <motion.div
-        whileHover={{ scale: 1.15, rotate: [0, 5, -5, 0] }}
-        transition={{ duration: 0.4, type: 'spring' }}
-        className={`w-12 h-12 rounded-lg flex items-center justify-center ${color}`}
-      >
-        {icons[icon]}
-      </motion.div>
-      <h3 className="text-xl font-semibold">{title}</h3>
-      <p className="text-gray-600 text-sm">{description}</p>
-    </motion.div>
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 to-indigo-50/30 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      
+      {/* Glow effect */}
+      <div className="absolute inset-0 rounded-xl pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-500"
+        style={{
+          boxShadow: 'inset 0 0 80px rgba(124, 58, 237, 0.1)',
+        }}
+      />
+      
+      <div ref={contentRef} className="p-6 flex flex-col items-start gap-4 relative z-10">
+        <motion.div
+          ref={iconRef}
+          className={`w-12 h-12 rounded-lg flex items-center justify-center ${color} transition-all duration-300`}
+          whileTap={{ scale: 0.9 }}
+        >
+          {icons[icon]}
+        </motion.div>
+        
+        <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
+        <p className="text-gray-600 text-sm">{description}</p>
+        
+        {/* Animated underline */}
+        <motion.div 
+          className="w-full h-px bg-gradient-to-r from-transparent via-purple-300 to-transparent mt-4"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        />
+      </div>
+    </div>
   );
 };
 
 const FeatureSection: FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current || !headingRef.current) return;
+
+    // Animate heading
+    gsap.from(headingRef.current, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top 90%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    // Animate subtitle
+    gsap.from(headingRef.current.querySelector('p'), {
+      y: 20,
+      opacity: 0,
+      duration: 0.8,
+      delay: 0.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top 90%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }, []);
+
   const features: FeatureProps[] = [
     {
       icon: 'operations',
@@ -117,39 +253,20 @@ const FeatureSection: FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
+    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div ref={headingRef} className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
             Powerful Features for Modern Businesses
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Nexus Core combines essential ERP functionality with cutting-edge technology to streamline your operations.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.03, boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="relative group bg-white rounded-xl border border-transparent hover:border-indigo-300 transition-all duration-300"
-            >
-              <Feature {...feature} />
-
-              {/* Gradient glow on hover */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-300/10 to-indigo-300/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </motion.div>
+            <FeatureCard key={index} {...feature} />
           ))}
         </div>
       </div>

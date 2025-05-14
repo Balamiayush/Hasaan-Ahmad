@@ -5,15 +5,22 @@ import AISection from "./components/AISection";
 import KanbanBoard from "./components/KanbanBoard";
 import CommunicationPlatform from "./components/CommunicationPlatform";
 import PricingSection from "./components/PricingSection";
+import CallToAction from "./components/CallToAction";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+
 export default function Home() {
   return (
     <div className="w-full  ">
       <Hero/>
+      <Navbar/>
       <FeaturesSection/>
-      {/* <AISection/>
+      <AISection/>
       <KanbanBoard/>
       <CommunicationPlatform/>
-      <PricingSection/> */}
+      <PricingSection/>
+      <CallToAction/>
+      <Footer/>
     </div>
   );
 }
