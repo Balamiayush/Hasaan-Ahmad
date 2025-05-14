@@ -7,13 +7,13 @@ import CommunicationPlatform from "./components/CommunicationPlatform";
 import PricingSection from "./components/PricingSection";
 export default function Home() {
   return (
-    <div className="w-full ">
+    <div className="w-full  ">
       <Hero/>
       <FeaturesSection/>
-      <AISection/>
+      {/* <AISection/>
       <KanbanBoard/>
       <CommunicationPlatform/>
-      <PricingSection/>
+      <PricingSection/> */}
     </div>
   );
 }
