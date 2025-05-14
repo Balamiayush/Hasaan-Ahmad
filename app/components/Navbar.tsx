@@ -53,7 +53,7 @@ const Navbar = () => {
                 </motion.span>
                 <motion.span
                   variants={{ hover: { y: -20 } }}
-                  initial={{ y: 20 }}
+                  initial={{ y: 10 }}
                   transition={{ duration: 0.3 }}
                   className={`absolute left-0 inline-block ${selectedTab === tab ? 'text-[#7C3AED]' : 'text-gray-600'}`}
                 >
@@ -78,7 +78,7 @@ const Navbar = () => {
                   hover: { y: -30 },
                 }}
                 initial={{ y: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.3,ease: "easeOut" }}
                 className="block"
               >
                 Get Started
