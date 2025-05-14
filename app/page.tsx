@@ -5,7 +5,7 @@ import AISection from "./components/AISection";
 import KanbanBoard from "./components/KanbanBoard";
 import CommunicationPlatform from "./components/CommunicationPlatform";
 import PricingSection from "./components/PricingSection";
-import CallToAction from "./components/CallToAction";
+// import CallToAction from "./components/CallToAction";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
@@ -19,7 +19,7 @@ export default function Home() {
       <KanbanBoard/>
       <CommunicationPlatform/>
       <PricingSection/>
-      <CallToAction/>
+      {/* <CallToAction/> */}
       <Footer/>
     </div>
   );
