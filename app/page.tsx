@@ -18,7 +18,6 @@ export default function Home() {
   return (
     <div className="w-full bg-gradient-to-br from-white via-gray-50  ">
       <Hero/>
-      <Navbar/>
       <FeaturesSection/>
       <AISection/>
       <KanbanBoard/>

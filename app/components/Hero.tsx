@@ -68,9 +68,9 @@ const Hero = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 p-6">
             <Button 
-    text="Start for Free" 
+    text="Start for Free " 
     variant="primary" 
-    className="w-full sm:w-auto text-center"
+    className="w-full sm:w-auto text-center "
   />
   <Button 
     text="Explore Features" 

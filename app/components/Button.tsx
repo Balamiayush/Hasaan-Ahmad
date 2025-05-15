@@ -17,7 +17,7 @@ const Button = ({
   const baseStyles = "relative rounded-lg font-medium px-6 py-3 transition-all duration-200";
   
   const variantStyles = {
-    primary: "bg-indigo-600 text-white hover:bg-indigo-700",
+    primary: "bg-[#A58AFA] text-white hover:bg-purple-600",
     secondary: "bg-white text-indigo-600 border border-gray-200 hover:border-indigo-400 hover:text-indigo-700",
   };
 

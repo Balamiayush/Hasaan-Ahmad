@@ -211,6 +211,18 @@ const FeatureSection: FC = () => {
         toggleActions: 'play none none none',
       },
     });
+    gsap.to("h2",{
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      delay: 0.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top 90%',
+
+      },
+    })
   }, []);
 
   const features: FeatureProps[] = [
