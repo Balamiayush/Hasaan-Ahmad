@@ -1,4 +1,5 @@
 
+"use client";
 import Hero from "./components/Hero";
 import FeaturesSection from "./components/FeaturesSection";
 import AISection from "./components/AISection";

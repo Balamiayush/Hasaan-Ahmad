@@ -31,13 +31,13 @@ const Navbar = () => {
         </motion.div>
 
         {/* Desktop Navigation */}
-     <div className="hidden md:flex items-center justify-center relative">
+     <div className="hidden md:flex  relative ">
         {tabs.map((tab) => (
           <Link
             href={`#${tab.toLowerCase().replace(" ", "-")}`}
             key={tab}
             onClick={() => setSelectedTab(tab)}
-            className="relative px-3 py-1.5 rounded-md text-sm"
+            className="relative px-3 py-2 rounded-md text-sm font-medium "
           >
             <motion.div
               whileHover="hover"
