@@ -26,7 +26,7 @@ lenis.on('scroll', (e) => {
   })
   return (
     <div className="w-full bg-gradient-to-br from-white via-gray-50 relative   ">
-      <Loading/>
+      {/* <Loading/> */}
       <Hero/>
       <FeaturesSection/>
       <AISection/>

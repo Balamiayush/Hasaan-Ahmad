@@ -39,7 +39,7 @@ const Navbar = () => {
           >
             <motion.div
               whileHover="hover"
-              className="relative overflow-hidden h-8 w-fit group"
+              className="relative overflow-hidden h-6 w-fit group"
             >
               <motion.span
                 variants={{

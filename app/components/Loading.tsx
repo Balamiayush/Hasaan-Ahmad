@@ -65,11 +65,10 @@ const Loading = () => {
                             <motion.h1 
                                 className="text-4xl font-bold text-white mb-2"
                                 animate={{
-                                    scale: [1, 1.05, 1],
+                                    scale: [1,2],
                                 }}
                                 transition={{
-                                    duration: 2,
-                                    repeat: Infinity,
+                                    duration: 1,
                                     ease: "easeInOut"
                                 }}
                             >
