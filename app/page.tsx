@@ -9,8 +9,12 @@ import PricingSection from "./components/PricingSection";
 // import CallToAction from "./components/CallToAction";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  })
   return (
     <div className="w-full bg-gradient-to-br from-white via-gray-50  ">
       <Hero/>
@@ -19,7 +23,7 @@ export default function Home() {
       <AISection/>
       <KanbanBoard/>
       <CommunicationPlatform/>
-      <PricingSection/>
+      {/* <PricingSection/> */}
       {/* <CallToAction/> */}
       <Footer/>
     </div>

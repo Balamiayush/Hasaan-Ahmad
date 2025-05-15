@@ -104,6 +104,7 @@ const CommunicationPlatform: FC = () => {
   // Auto-scroll to bottom of messages
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    
   }, [messages]);
 
   // Animation variants

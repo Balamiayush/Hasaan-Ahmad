@@ -1,10 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import Head from "next/head";
-import Link from "next/link";
 import Navbar from "./Navbar";
 import Button from "./Button";
-
 
 const Hero = () => {
   const container = {
@@ -23,21 +21,12 @@ const Hero = () => {
     show: {
       y: 0,
       opacity: 1,
-      transition: { type: "spring", damping: 10, stiffness: 100 }
+      transition: { type: "spring", damping: 10, stiffness: 100 },
     },
   };
 
-  const hoverEffect = {
-    scale: 1.03,
-    transition: { duration: 0.2 },
-  };
-
-  const tapEffect = {
-    scale: 0.98,
-  };
-
   return (
-    <div className="min-h-screen to-gray-100 text-gray-900 overflow-hidden">
+    <div className="min-h-screen  mt-10 lg:mt-5  to-gray-100 text-gray-900 overflow-hidden">
       <Head>
         <title>Nexus Core | Unified ERP for Modern Business</title>
         <meta
@@ -52,13 +41,13 @@ const Hero = () => {
         initial="hidden"
         animate="show"
         variants={container}
-        className="  container mx-auto px-6 lg:px-8 xl:px-12 py-12 lg:py-24 flex flex-col lg:flex-row items-center justify-between gap-20"
+        className="container mx-auto px-6 lg:px-8 xl:px-12 py-12 lg:py-24 flex flex-col lg:flex-row items-center justify-between gap-20"
       >
         {/* Left Content */}
-        <div className=" space-y-8 text-center lg:text-left ">
+        <div className="space-y-8 text-center lg:text-left">
           <motion.h1
             variants={item}
-            className="sm:text-5xl md:text-6xl font-bold leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight"
           >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
               Unified ERP
@@ -69,81 +58,27 @@ const Hero = () => {
 
           <motion.p
             variants={item}
-            className="text-lg md:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0"
+            className="text-base sm:text-lg md:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0"
           >
             Centralize operations, automate workflows, and boost productivity
-            with <strong className="font-semibold">Nexus Core</strong> — the all-in-one ERP solution
-            for growing organizations.
+            with{" "}
+            <strong className="font-semibold">Nexus Core</strong> — the all-in-one ERP solution for
+            growing organizations.
           </motion.p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <motion.div
-              variants={item}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-            >
-              <motion.div
-                whileHover="hover"
-                className="relative "
-              >
-                <Link
-                  href="/get-started"
-                  className="px-8 py-3.5 w-full rounded-lg bg-[#7C3AED] text-white text-sm font-medium shadow-sm block"
-                >
-                  <motion.span
-                    variants={{
-                      hover: { y: -30 },
-                    }}
-                    initial={{ y: 0 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="block"
-                  >
-                    Start for Free →
-                  </motion.span>
-                  <motion.span
-                    variants={{ hover: { y: -20 } }}
-                    initial={{ y: 10 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute   text-white"
-                  >
-                    Start for Free →
-                  </motion.span>
-                </Link>
-              </motion.div>
-            </motion.div>
-            <motion.div
-              variants={item}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-            >
-              <motion.div
-                whileHover="hover"
-                className="relative overflow-hidden h-10"
-              >
-                <Link
-                  href=""
-                  className="px-8 py-3.5 rounded-lg bg-yellow-100 text-black text-sm font-medium shadow-sm block"
-                >
-                  <motion.span
-                    variants={{
-                      hover: { y: -40 },
-                    }}
-                    initial={{ y: 0 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="block"
-                  >
-                    Explore Features →
-                  </motion.span>
-                  <motion.span
-                    variants={{ hover: { y: -20 } }}
-                    initial={{ y: 10 }}
-                    transition={{ duration: 0.4 }}
-                    className="absolute  inline-block text-black"
-                  >
-                    Explore Features →
-                  </motion.span>
-                </Link>
-              </motion.div>
 
-            </motion.div>
+          <div className="flex flex-col sm:flex-row gap-4 p-6">
+            <Button 
+    text="Start for Free" 
+    variant="primary" 
+    className="w-full sm:w-auto text-center"
+  />
+  <Button 
+    text="Explore Features" 
+    variant="secondary" 
+    className="w-full sm:w-auto text-center"
+  />
           </div>
+
           <motion.div
             variants={item}
             className="flex flex-wrap justify-center lg:justify-start gap-4 pt-6 text-sm md:text-base text-gray-500"
@@ -166,9 +101,9 @@ const Hero = () => {
         {/* Right Card */}
         <motion.div
           variants={item}
-          className=" max-w-md xl:max-w-lg bg-white rounded-3xl border border-gray-200 shadow-xl p-8 space-y-6 hover:shadow-2xl transition-shadow duration-300"
+          className="max-w-md xl:max-w-lg bg-white rounded-3xl border border-gray-200 shadow-xl p-8 space-y-6 hover:shadow-2xl transition-shadow duration-300"
         >
-          <h3 className="text-xl md:text-2xl font-bold text-gray-800">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">
             Why Choose <span className="text-purple-600">Nexus Core?</span>
           </h3>
 
@@ -241,7 +176,6 @@ const FeatureItem = ({
   </motion.div>
 );
 
-// Icons remain the same as in your original code
 const CheckIcon = () => (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

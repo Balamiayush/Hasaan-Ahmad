@@ -1,46 +1,65 @@
-'use client';
+"use client";
+import { motion } from "framer-motion";
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-
-type ButtonProps = {
-  cta: string;
-  href: string;
+interface ButtonProps {
+  text: string;
+  variant?: "primary" | "secondary";
   className?: string;
-};
+  onClick?: () => void;
+}
 
-const Button = ({ cta, href,className="" }: ButtonProps) => {
+const Button = ({ 
+  text, 
+  variant = "primary", 
+  className = "", 
+  onClick 
+}: ButtonProps) => {
+  const baseStyles = "relative rounded-lg font-medium px-6 py-3 transition-all duration-200";
+  
+  const variantStyles = {
+    primary: "bg-indigo-600 text-white hover:bg-indigo-700",
+    secondary: "bg-white text-indigo-600 border border-gray-200 hover:border-indigo-400 hover:text-indigo-700",
+  };
+
   return (
-   <motion.div
-              whileHover="hover"
-              className="ml-4 relative overflow-hidden h-10"
-            >
-              <Link
-                href={href}
-                className="px-5 py-2 rounded-lg bg-[#7C3AED] text-white text-sm font-medium shadow-sm block"
-              >
-                <motion.span
-                  variants={{
-                    hover: { y: -30 },
-                  }}
-                  initial={{ y: 0 }}
-                  transition={{ duration: 0.3,ease: "easeOut" }}
-                  className="block text-center"
-                >
-                  {cta}
-                </motion.span>
-                <motion.span
-                  variants={{ hover: { y: -20 } }}
-                  initial={{ y: 10 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute left-1/2 transform -translate-x-1/2 text-center inline-block text-white"
-                >
-                  {cta}
-                </motion.span>
-              </Link>
-            </motion.div>
+    <motion.button
+      whileHover={{
+        transition: { duration: 0.2 }
+      }}
+      whileTap={{ 
+        scale: 0.98,
+        transition: { duration: 0.1 }
+      }}
+      className={`${baseStyles} ${variantStyles[variant]} ${className}`}
+      onClick={onClick}
+    >
+      {/* Primary variant: subtle background darkening */}
+      {variant === "primary" && (
+        <motion.div
+          className="absolute inset-0 bg-black opacity-0 rounded-lg"
+          whileHover={{ 
+            opacity: 0.1,
+            transition: { duration: 0.2 }
+          }}
+        />
+      )}
+      
+      {/* Secondary variant: text color shift */}
+      {variant === "secondary" && (
+        <motion.span
+          className="absolute inset-0 rounded-lg border border-transparent"
+          whileHover={{
+            borderColor: "rgba(99, 102, 241, 0.3)",
+            transition: { duration: 0.2 }
+          }}
+        />
+      )}
+      
+      <span className="relative z-10 block">
+        {text}
+      </span>
+    </motion.button>
   );
 };
 
 export default Button;
-
