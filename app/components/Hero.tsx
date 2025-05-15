@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import Link from "next/link";
 import Navbar from "./Navbar";
+import Button from "./Button";
+
 
 const Hero = () => {
   const container = {
@@ -35,7 +37,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100 text-gray-900 overflow-hidden">
+    <div className="min-h-screen to-gray-100 text-gray-900 overflow-hidden">
       <Head>
         <title>Nexus Core | Unified ERP for Modern Business</title>
         <meta
@@ -73,27 +75,107 @@ const Hero = () => {
             with <strong className="font-semibold">Nexus Core</strong> — the all-in-one ERP solution
             for growing organizations.
           </motion.p>
+<div className="flex gap-10">
 
           <motion.div
             variants={item}
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
           >
-            <motion.button
+             <motion.div
+                      whileHover="hover"
+                      className="relative "
+                    >
+                      <Link
+                        href="/get-started"
+                        className="px-8 py-3.5 rounded-lg bg-[#7C3AED] text-white text-sm font-medium shadow-sm block"
+                      >
+                        <motion.span
+                          variants={{
+                            hover: { y: -30 },
+                          }}
+                          initial={{ y: 0 }}
+                          transition={{ duration: 0.3,ease: "easeOut" }}
+                          className="block"
+                        >
+                         Start for Free →
+                        </motion.span>
+                        <motion.span
+                          variants={{ hover: { y: -20 } }}
+                          initial={{ y: 10 }}
+                          transition={{ duration: 0.3 }}
+                          className="absolute  inline-block text-white"
+                        >
+                         Start for Free →
+                        </motion.span>
+                      </Link>
+                    </motion.div>
+            
+            {/* <motion.button
               whileHover={hoverEffect}
               whileTap={tapEffect}
               className="px-8 py-3.5 rounded-lg text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all font-medium shadow-lg shadow-purple-100"
             >
               Start for Free →
-            </motion.button>
-            <motion.button
+            </motion.button> */}
+            {/* <motion.button
               whileHover={hoverEffect}
               whileTap={tapEffect}
               className="px-8 py-3.5 rounded-lg border-2 border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all font-medium"
             >
               Explore Features
-            </motion.button>
+            </motion.button> */}
+            
           </motion.div>
-
+          <motion.div
+            variants={item}
+            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+          >
+             <motion.div
+                      whileHover="hover"
+                      className="relative overflow-hidden h-10"
+                    >
+                      <Link
+                        href=""
+                        className="px-8 py-3.5 rounded-lg bg-yellow-100 text-black text-sm font-medium shadow-sm block"
+                      >
+                        <motion.span
+                          variants={{
+                            hover: { y: -40 },
+                          }}
+                          initial={{ y: 0 }}
+                          transition={{ duration: 0.4,ease: "easeOut" }}
+                          className="block"
+                        >
+                          Explore Features →
+                        </motion.span>
+                        <motion.span
+                          variants={{ hover: { y: -20 } }}
+                          initial={{ y: 10 }}
+                          transition={{ duration: 0.4 }}
+                          className="absolute  inline-block text-black"
+                        >
+                          Explore Features →
+                        </motion.span>
+                      </Link>
+                    </motion.div>
+            
+            {/* <motion.button
+              whileHover={hoverEffect}
+              whileTap={tapEffect}
+              className="px-8 py-3.5 rounded-lg text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all font-medium shadow-lg shadow-purple-100"
+            >
+              Start for Free →
+            </motion.button> */}
+            {/* <motion.button
+              whileHover={hoverEffect}
+              whileTap={tapEffect}
+              className="px-8 py-3.5 rounded-lg border-2 border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all font-medium"
+            >
+             
+            </motion.button> */}
+            
+          </motion.div>
+</div>
           <motion.div
             variants={item}
             className="flex flex-wrap justify-center lg:justify-start gap-4 pt-6 text-sm md:text-base text-gray-500"

@@ -177,12 +177,9 @@ const KanbanBoard: FC = () => {
 
 const VisualProjectManagement: FC = () => {
   return (
-    <section className="py-16 px-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl border border-blue-100 overflow-hidden relative">
+    <section className=" overflow-hidden relative">
       {/* Dots in corners */}
-      <div className="absolute top-6 left-6 w-3 h-3 rounded-full border-2 border-blue-300" />
-      <div className="absolute top-6 right-6 w-3 h-3 rounded-full border-2 border-blue-300" />
-      <div className="absolute bottom-6 left-6 w-3 h-3 rounded-full border-2 border-blue-300" />
-      <div className="absolute bottom-6 right-6 w-3 h-3 rounded-full border-2 border-blue-300" />
+
       
       <div className="max-w-6xl mx-auto">
         <motion.div 
