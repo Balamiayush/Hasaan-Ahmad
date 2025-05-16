@@ -9,8 +9,7 @@ import KanbanBoard from "./components/KanbanBoard";
 import CommunicationPlatform from "./components/CommunicationPlatform";
 import PricingSection from "./components/PricingSection";
 import CallToAction from "./components/CallToAction";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import Footer from "./components/footer/Footer1";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -26,7 +25,7 @@ lenis.on('scroll', (e) => {
 });
   })
   return (
-    <div className="w-full bg-gradient-to-br from-white via-gray-50  ">
+    <div className="w-full bg-gradient-to-br from-white via-gray-50 relative   ">
       <Loading/>
       <Hero/>
       <FeaturesSection/>
