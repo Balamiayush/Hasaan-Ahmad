@@ -70,7 +70,7 @@ const CardItem: React.FC<CardItemProps> = ({
         className={`card relative overflow-hidden rounded-lg p-6 ${bgColorClass} ${textColorClass}`}
       >
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
-        <div className="body flex gap-4">
+        <div className="body flex gap-4 flex-col md:flex-row ">
           <div className="description flex-1">
             <p className="mb-4">{description}</p>
             <span className="inline-flex items-center gap-1 cursor-pointer">
@@ -119,7 +119,19 @@ const CardItem: React.FC<CardItemProps> = ({
 const Card: React.FC = () => {
   return (
     <>
-    
+      <motion.h2
+        className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-center mt-5"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
+          Our
+        </span>{' '}
+        <br className="sm:hidden" />
+        Services
+      </motion.h2>
       {projects.map((project, i) => (
         <CardItem key={i} index={i} {...project} />
       ))}

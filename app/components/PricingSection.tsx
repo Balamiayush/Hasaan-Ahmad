@@ -1,151 +1,238 @@
-"use client";
-import { motion } from "framer-motion";
-import { FiCheck, FiZap, FiStar } from 'react-icons/fi';
-import Button from "./Button";
-const PricingSection = () => {
-  // Animation variants
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3
-      }
-    }
-  };
+'use client'; // This is needed if using Next.js 13+ with client-side interactivity
 
-  const item = {
-    hidden: { y: 30, opacity: 0 },
-    show: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10
-      }
-    }
-  };
+import { useState } from 'react';
+import Head from 'next/head';
 
-  const cardHover = {
-    y: -5,
-    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",
-    transition: { duration: 0.3 }
-  };
-
-  const plans = [
-    {
-      name: "Free Plan",
-      description: "Ideal for startups or small teams just getting started",
-      price: "$0",
-      period: "month",
-      cta: "Get Started",
-      featured: false,
-      features: [
-        "Up to 8 Users",
-        "Limited Access to Basic Features",
-        "Basic Vendition Management",
-        "Limited Inventory Management",
-        "Limited Payroll Management",
-        "Website Builder",
-        "AI-Powered Automation",
-        "Custom Domains"
-      ]
-    },
-    {
-      name: "Premium Plan",
-      description: "Complete solution for growing organizations",
-      price: "$9.99",
-      period: "month",
-      cta: "Upgrade Now",
-      featured: true,
-      features: [
-        "Unlimited Users",
-        "Full Access to All Features",
-        "Advanced Vendition Management",
-        "Complete Inventory Management",
-        "Full Payroll Management",
-        "Website Builder",
-        "AI-Powered Automation",
-        "Custom Domains",
-        "Priority Support"
-      ]
-    }
-  ];
+export default function PricingSection() {
+  const [isAnnual, setIsAnnual] = useState(true);
 
   return (
-    <section className="py-20 bg-white relative">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Simple, <span className="text-purple-600">Affordable Pricing</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Unlike competitors that charge per user, Nexus Core offers a flat rate for your entire organization
-          </p>
-        </motion.div>
+    <>
+      <Head>
+        <title>Pricing Table</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
 
-        {/* Pricing Cards */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
-        >
-          {plans.map((plan, index) => (
-            <motion.div
-              key={index}
-              variants={item}
-              whileHover={plan.featured ? undefined : cardHover}
-              className={`relative rounded-xl border ${plan.featured ? 'border-purple-300 bg-gradient-to-br from-purple-50 to-white shadow-lg' : 'border-gray-200 bg-white shadow-sm'} overflow-hidden`}
-            >
-              {plan.featured && (
-                <div className="absolute top-0 right-0 bg-purple-600 text-white text-xs font-semibold px-3 py-1 transform rotate-12 translate-x-2 -translate-y-2">
-                  Popular
+      <div className="relative font-inter antialiased">
+        <main className="relative min-h-screen flex flex-col justify-center bg-slate-50 overflow-hidden">
+          <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-24">
+
+            {/* Pricing table component */}
+            <div>
+              {/* Pricing toggle */}
+              <div className="flex justify-center max-w-[14rem] m-auto mb-8 lg:mb-16">
+                <div className="relative flex w-full p-1 bg-white dark:bg-slate-900 rounded-full">
+                  <span className="absolute inset-0 m-1 pointer-events-none" aria-hidden="true">
+                    <span 
+                      className={`absolute inset-0 w-1/2 bg-indigo-500 rounded-full shadow-sm shadow-indigo-950/10 transform transition-transform duration-150 ease-in-out ${
+                        isAnnual ? 'translate-x-0' : 'translate-x-full'
+                      }`}
+                    ></span>
+                  </span>
+                  <button
+                    className={`relative flex-1 text-sm font-medium h-8 rounded-full focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 dark:focus-visible:ring-slate-600 transition-colors duration-150 ease-in-out ${
+                      isAnnual ? 'text-white' : 'text-slate-500 dark:text-slate-400'
+                    }`}
+                    onClick={() => setIsAnnual(true)}
+                    aria-pressed={isAnnual}
+                  >
+                    Yearly <span className={isAnnual ? 'text-indigo-200' : 'text-slate-400 dark:text-slate-500'}>-20%</span>
+                  </button>
+                  <button
+                    className={`relative flex-1 text-sm font-medium h-8 rounded-full focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 dark:focus-visible:ring-slate-600 transition-colors duration-150 ease-in-out ${
+                      isAnnual ? 'text-slate-500 dark:text-slate-400' : 'text-white'
+                    }`}
+                    onClick={() => setIsAnnual(false)}
+                    aria-pressed={!isAnnual}
+                  >
+                    Monthly
+                  </button>
                 </div>
-              )}
-
-              <div className="p-8">
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-2xl font-bold text-gray-900">{plan.name}</h3>
-                  {plan.featured && <FiStar className="text-yellow-400" />}
-                </div>
-                <p className="text-gray-600 mb-6">{plan.description}</p>
-
-                <div className="mb-8">
-                  <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                  <span className="text-gray-500">/{plan.period}</span>
-                </div>
-
-                <Button
-                  cta={plan.cta}
-                  href="/register"
-                  className={`w-full ${plan.cta === "Upgrade Now" ? 'bg-purple-600 text-white hover:bg-purple-700' : 'bg-white text-gray-900 hover:bg-gray-100'}`}
-                />
-                <ul className="space-y-3">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start">
-                      <FiCheck className={`mt-1 mr-2 flex-shrink-0 ${plan.featured ? 'text-purple-600' : 'text-gray-400'}`} />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-};
 
-export default PricingSection;
+              <div className="max-w-sm mx-auto grid gap-6 lg:grid-cols-3 items-start lg:max-w-none">
+                {/* Pricing tab 1 */}
+                <div className="h-full">
+                  <div className="relative flex flex-col h-full p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-900 shadow shadow-slate-950/5">
+                    <div className="mb-5">
+                      <div className="text-slate-900 dark:text-slate-200 font-semibold mb-1">Essential</div>
+                      <div className="inline-flex items-baseline mb-2">
+                        <span className="text-slate-900 dark:text-slate-200 font-bold text-3xl">$</span>
+                        <span className="text-slate-900 dark:text-slate-200 font-bold text-4xl">
+                          {isAnnual ? '29' : '35'}
+                        </span>
+                        <span className="text-slate-500 font-medium">/mo</span>
+                      </div>
+                      <div className="text-sm text-slate-500 mb-5">There are many variations available, but the majority have suffered.</div>
+                      <a
+                        className="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-indigo-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 dark:focus-visible:ring-slate-600 transition-colors duration-150"
+                        href="#0"
+                      >
+                        Purchase Plan
+                      </a>
+                    </div>
+                    <div className="text-slate-900 dark:text-slate-200 font-medium mb-3">Includes:</div>
+                    <ul className="text-slate-600 dark:text-slate-400 text-sm space-y-3 grow">
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Unlimited placeholder texts</span>
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Consectetur adipiscing elit</span>
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Excepteur sint occaecat cupidatat</span>
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Officia deserunt mollit anim</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Pricing tab 2 */}
+                <div className="dark h-full">
+                  <div className="relative flex flex-col h-full p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-900 shadow shadow-slate-950/5">
+                    <div className="absolute top-0 right-0 mr-6 -mt-4">
+                      <div className="inline-flex items-center text-xs font-semibold py-1.5 px-3 bg-emerald-500 text-white rounded-full shadow-sm shadow-slate-950/5">Most Popular</div>
+                    </div>
+                    <div className="mb-5">
+                      <div className="text-slate-900 dark:text-slate-200 font-semibold mb-1">Perform</div>
+                      <div className="inline-flex items-baseline mb-2">
+                        <span className="text-slate-900 dark:text-slate-200 font-bold text-3xl">$</span>
+                        <span className="text-slate-900 dark:text-slate-200 font-bold text-4xl">
+                          {isAnnual ? '49' : '55'}
+                        </span>
+                        <span className="text-slate-500 font-medium">/mo</span>
+                      </div>
+                      <div className="text-sm text-slate-500 mb-5">There are many variations available, but the majority have suffered.</div>
+                      <a
+                        className="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-indigo-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 dark:focus-visible:ring-slate-600 transition-colors duration-150"
+                        href="#0"
+                      >
+                        Purchase Plan
+                      </a>
+                    </div>
+                    <div className="text-slate-900 dark:text-slate-200 font-medium mb-3">Includes:</div>
+                    <ul className="text-slate-600 dark:text-slate-400 text-sm space-y-3 grow">
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Unlimited placeholder texts</span>
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Consectetur adipiscing elit</span>
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Excepteur sint occaecat cupidatat</span>
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Officia deserunt mollit anim</span>
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Predefined chunks as necessary</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Pricing tab 3 */}
+                <div className="h-full">
+                  <div className="relative flex flex-col h-full p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-900 shadow shadow-slate-950/5">
+                    <div className="mb-5">
+                      <div className="text-slate-900 dark:text-slate-200 font-semibold mb-1">Enterprise</div>
+                      <div className="inline-flex items-baseline mb-2">
+                        <span className="text-slate-900 dark:text-slate-200 font-bold text-3xl">$</span>
+                        <span className="text-slate-900 dark:text-slate-200 font-bold text-4xl">
+                          {isAnnual ? '79' : '85'}
+                        </span>
+                        <span className="text-slate-500 font-medium">/mo</span>
+                      </div>
+                      <div className="text-sm text-slate-500 mb-5">There are many variations available, but the majority have suffered.</div>
+                      <a
+                        className="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-indigo-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 dark:focus-visible:ring-slate-600 transition-colors duration-150"
+                        href="#0"
+                      >
+                        Purchase Plan
+                      </a>
+                    </div>
+                    <div className="text-slate-900 dark:text-slate-200 font-medium mb-3">Includes:</div>
+                    <ul className="text-slate-600 dark:text-slate-400 text-sm space-y-3 grow">
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Unlimited placeholder texts</span>
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Consectetur adipiscing elit</span>
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Excepteur sint occaecat cupidatat</span>
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Officia deserunt mollit anim</span>
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Predefined chunks as necessary</span>
+                      </li>
+                      <li className="flex items-center">
+                        <svg className="w-3 h-3 fill-emerald-500 mr-3 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                        </svg>
+                        <span>Free from repetition</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* End: Pricing table component */}
+          </div>
+        </main>
+      </div>
+    </>
+  );
+}

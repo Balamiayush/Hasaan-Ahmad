@@ -12,7 +12,7 @@ import CallToAction from "./components/CallToAction";
 import Footer from "./components/footer/Footer1";
 import { useEffect } from "react";
 import Card from './components/Card';
-
+import Loadinggg from './components/Loadinggg';
 export default function Home() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -27,6 +27,7 @@ export default function Home() {
   })
   return (
     <div className="w-full bg-white relative  ">
+      <Loadinggg/>
       {/* <Loading/> */}
       <Hero/>
       <FeaturesSection/>
