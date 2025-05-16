@@ -75,7 +75,7 @@ const PricingSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section className="py-20 bg-white relative">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div

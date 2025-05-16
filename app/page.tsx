@@ -11,24 +11,26 @@ import PricingSection from "./components/PricingSection";
 import CallToAction from "./components/CallToAction";
 import Footer from "./components/footer/Footer1";
 import { useEffect } from "react";
+import Card from './components/Card';
 
 export default function Home() {
   useEffect(() => {
     window.scrollTo(0, 0);
     const lenis = new Lenis({
-  autoRaf: true,
-});
-
-// Listen for the scroll event and log the event data
-lenis.on('scroll', (e) => {
-  // console.log(e);
-});
+      autoRaf: true,
+    });
+    
+    // Listen for the scroll event and log the event data
+    lenis.on('scroll', (e) => {
+      // console.log(e);
+    });
   })
   return (
-    <div className="w-full bg-gradient-to-br from-white via-gray-50 relative   ">
+    <div className="w-full bg-white relative  ">
       {/* <Loading/> */}
       <Hero/>
       <FeaturesSection/>
+      <Card/>
       <AISection/>
       <KanbanBoard/>
       <CommunicationPlatform/>

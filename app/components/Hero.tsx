@@ -1,5 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
 import Head from "next/head";
 import Navbar from "./Navbar";
 import Button from "./Button";
@@ -25,16 +26,51 @@ const Hero = () => {
     },
   };
 
-  return (
-    <div className="min-h-screen  mt-10 lg:mt-5  to-gray-100 text-gray-900 overflow-hidden">
-      <Head>
-        <title>Nexus Core | Unified ERP for Modern Business</title>
-        <meta
-          name="description"
-          content="Centralize operations, automate workflows, and boost productivity with Nexus Core"
-        />
-      </Head>
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
 
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [isInView, controls]);
+
+  // Floating animation for the card
+  const floatingAnimation = {
+    hidden: { y: 50, opacity: 0, rotate: 5 },
+    visible: {
+      y: [0, -100, 0],
+      opacity: 1,
+      rotate: 0,
+      transition: {
+        y: {
+          duration: 0.8,
+          ease: "easeInOut",
+        },
+        opacity: { duration: 0.8 },
+        rotate: { duration: 0.8 },
+      },
+    },
+  };
+
+  // Gradient pulse animation
+  const gradientPulse = {
+    hidden: { backgroundPosition: "0% 50%" },
+    visible: {
+      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+      transition: {
+        backgroundPosition: {
+          duration: 8,
+          repeat: Infinity,
+          ease: "linear",
+        },
+      },
+    },
+  };
+
+  return (
+    <div className="min-h-screen mt-10 lg:mt-5 bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900 overflow-hidden">
       <Navbar />
 
       <motion.main
@@ -47,65 +83,104 @@ const Hero = () => {
         <div className="space-y-8 text-center lg:text-left">
           <motion.h1
             variants={item}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight"
+            className="text-4xl md:text-[6vw] font-bold leading-[80px]"
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+            <motion.span
+              variants={gradientPulse}
+              initial="hidden"
+              animate="visible"
+              className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 bg-[length:300%_300%]"
+            >
               Unified ERP
-            </span>{" "}
+            </motion.span>{" "}
             for <br className="hidden sm:block" />
-            Modern Business
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              Modern Business
+            </motion.span>
           </motion.h1>
 
           <motion.p
             variants={item}
-            className="text-base sm:text-lg md:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0"
+            className="text-base sm:text-sm md:text-[15px] text-gray-600 max-w-xl mx-auto lg:mx-0"
           >
             Centralize operations, automate workflows, and boost productivity
             with{" "}
-            <strong className="font-semibold">Nexus Core</strong> — the all-in-one ERP solution for
+            <motion.strong 
+              className="font-semibold"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Nexus Core
+            </motion.strong> — the all-in-one ERP solution for
             growing organizations.
           </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 p-6">
+          <motion.div 
+            variants={item}
+            className="flex flex-col sm:flex-row gap-4 p-6"
+          >
             <Button 
-    text="Start for Free " 
-    variant="primary" 
-    className="w-full sm:w-auto text-center "
-  />
-  <Button 
-    text="Explore Features" 
-    variant="secondary" 
-    className="w-full sm:w-auto text-center"
-  />
-          </div>
+              text="Start for Free" 
+              variant="primary" 
+              className="w-full sm:w-auto text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            />
+            <Button 
+              text="Explore Features" 
+              variant="secondary" 
+              className="w-full sm:w-auto text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            />
+          </motion.div>
 
           <motion.div
             variants={item}
             className="flex flex-wrap justify-center lg:justify-start gap-4 pt-6 text-sm md:text-base text-gray-500"
           >
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-full shadow-sm">
-              <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-full shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />
               <span>Affordable Flat Rate</span>
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-full shadow-sm">
-              <div className="w-2.5 h-2.5 rounded-full bg-sky-500" />
+            </motion.div>
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-full shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div className="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse" />
               <span>Custom Domains</span>
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-full shadow-sm">
-              <div className="w-2.5 h-2.5 rounded-full bg-purple-500" />
+            </motion.div>
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-2 px-3 py-1.5 bg-white rounded-full shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div className="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse" />
               <span>AI-Powered</span>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
         {/* Right Card */}
         <motion.div
-          variants={item}
-          className="max-w-md xl:max-w-lg bg-white rounded-3xl border border-gray-200 shadow-xl p-8 space-y-6 hover:shadow-2xl transition-shadow duration-300"
+          ref={ref}
+          initial="hidden"
+          animate={controls}
+          variants={floatingAnimation}
+          className="relative max-w-md xl:max-w-lg bg-white rounded-3xl border border-gray-200 shadow-xl p-8 space-y-6 hover:shadow-2xl transition-all duration-300 overflow-hidden"
         >
-          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">
+          {/* Decorative elements */}
+          <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-purple-100 opacity-30 blur-xl"></div>
+          <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-blue-100 opacity-30 blur-xl"></div>
+          
+          <motion.h3 
+            className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800"
+            whileHover={{ x: 5 }}
+          >
             Why Choose <span className="text-purple-600">Nexus Core?</span>
-          </h3>
+          </motion.h3>
 
           <div className="space-y-5">
             <FeatureItem
@@ -131,16 +206,21 @@ const Hero = () => {
             />
           </div>
 
-          <div className="pt-4 border-t border-gray-200 text-gray-600 text-sm space-y-2">
+          <motion.div 
+            className="pt-4 border-t border-gray-200 text-gray-600 text-sm space-y-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
             <p className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
               Flat pricing for all users — no hidden fees
             </p>
             <p className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
               Smarter workflows powered by automation & AI
             </p>
-          </div>
+          </motion.div>
         </motion.div>
       </motion.main>
     </div>
@@ -162,13 +242,15 @@ const FeatureItem = ({
 }) => (
   <motion.div
     whileHover={{ x: 5 }}
-    className="flex items-start gap-4 p-3 rounded-xl hover:bg-gray-50 transition-colors"
+    whileTap={{ scale: 0.98 }}
+    className="flex items-start gap-4 p-3 rounded-xl hover:bg-gray-50 transition-colors cursor-pointer"
   >
-    <div
-      className={`w-12 h-12 rounded-xl ${iconColor} flex items-center justify-center ${iconTextColor} flex-shrink-0`}
+    <motion.div
+      whileHover={{ rotate: 10, scale: 1.1 }}
+      className={`w-12 h-12 rounded-xl ${iconColor} flex items-center justify-center ${iconTextColor} flex-shrink-0 transition-all`}
     >
       {icon}
-    </div>
+    </motion.div>
     <div>
       <p className="text-gray-800 font-semibold">{text}</p>
       <p className="text-gray-500 text-sm mt-1">{description}</p>
@@ -177,26 +259,57 @@ const FeatureItem = ({
 );
 
 const CheckIcon = () => (
-  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <motion.svg 
+    className="w-6 h-6" 
+    fill="none" 
+    stroke="currentColor" 
+    viewBox="0 0 24 24"
+    whileHover={{ scale: 1.2 }}
+  >
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-  </svg>
+  </motion.svg>
 );
 
 const ArrowIcon = () => (
-  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <motion.svg 
+    className="w-6 h-6" 
+    fill="none" 
+    stroke="currentColor" 
+    viewBox="0 0 24 24"
+    animate={{
+      rotate: [0, 10, -10, 0],
+    }}
+    transition={{
+      duration: 2,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+  >
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-  </svg>
+  </motion.svg>
 );
 
 const BrainIcon = () => (
-  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <motion.svg 
+    className="w-6 h-6" 
+    fill="none" 
+    stroke="currentColor" 
+    viewBox="0 0 24 24"
+    animate={{
+      scale: [1, 1.1, 1],
+    }}
+    transition={{
+      duration: 2,
+      repeat: Infinity,
+    }}
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
       d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
     />
-  </svg>
+  </motion.svg>
 );
 
 export default Hero;

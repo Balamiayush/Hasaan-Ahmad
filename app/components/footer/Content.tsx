@@ -23,13 +23,7 @@ export default function Content() {
           }
       })
       gsap.to(".navlist",{
-        y: -10,
-          scrollTrigger: {
-              trigger: ".footerrrr",
-              start: "top top",
-              end: "bottom top",
-              scrub: 1,
-          }
+       
       })
 
   })

@@ -8,7 +8,7 @@ const CallToAction: FC = () => {
   const [company, setCompany] = useState('');
 
   return (
-    <section className="  flex items-center justify-center bg-gradient-to-br from-[#7928CA] to-[#4F3CC9] px-4 py-20">
+    <section className="  flex items-center justify-center bg-gradient-to-br from-[#7928CA] to-[#4F3CC9] px-4 py-20 relative">
       <div className="text-center max-w-xl w-full">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
