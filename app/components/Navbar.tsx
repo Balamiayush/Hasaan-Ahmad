@@ -45,7 +45,7 @@ const Navbar = () => {
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className="w-full fixed top-0 z-50 navbar bg-black/80 backdrop-blur-lg border-b border-gray-800"
     >
-      <div className="px-4 py-4 mx-auto flex justify-between items-center max-w-7xl">
+      <div className=" py-4 mx-auto flex justify-between items-center max-w-7xl">
         {/* Logo */}
         <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.2 }}>
           <Link href="/" className="text-xl font-semibold text-[#7C3AED]">

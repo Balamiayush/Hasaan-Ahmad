@@ -34,7 +34,7 @@ export default function Home() {
 
       
       {/* Page Content */}
-        {/* <Loadinggg /> */}
+        <Loadinggg />
         <Hero />
         <FeaturesSection />
         <Card />
