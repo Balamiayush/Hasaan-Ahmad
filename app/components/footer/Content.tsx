@@ -28,7 +28,7 @@ export default function Content() {
 
   })
   return (
-    <div className='bg-[#4E4E5A] footerrrr  py-8 px-12 h-full w-full flex flex-col justify-between'>
+    <div className='bg-[#4E4E5A]  footerrrr  py-8 px-12 h-full w-full flex flex-col justify-between'>
       <Section2 />
       <Nav tabs={tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
     </div>

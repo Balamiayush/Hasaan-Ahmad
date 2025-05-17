@@ -36,7 +36,7 @@ const KanbanCard: FC<{ item: KanbanItem }> = ({ item }) => {
 
   return (
     <motion.div 
-      className="bg-white p-3 rounded-lg shadow-sm mb-3"
+      className=" p-3 rounded-lg shadow-sm mb-3"
       whileHover={{ y: -2, boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)' }}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
@@ -177,7 +177,7 @@ const KanbanBoard: FC = () => {
 
 const VisualProjectManagement: FC = () => {
   return (
-    <section className=" overflow-hidden relative z-100 bg-white">
+    <section className=" bg-[#121212] overflow-hidden relative z-100 ">
       {/* Dots in corners */}
 
       

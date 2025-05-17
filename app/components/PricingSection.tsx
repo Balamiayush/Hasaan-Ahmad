@@ -7,20 +7,9 @@ export default function PricingSection() {
   const [isAnnual, setIsAnnual] = useState(true);
 
   return (
-    <>
-      <Head>
-        <title>Pricing Table</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
 
-      <div className="relative font-inter antialiased">
-        <main className="relative min-h-screen flex flex-col justify-center bg-slate-50 overflow-hidden">
+      <div className="relative bg-[#121212] font-inter antialiased">
+        <main className="relative min-h-screen flex flex-col justify-center  overflow-hidden">
           <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-24">
 
             {/* Pricing table component */}
@@ -233,6 +222,6 @@ export default function PricingSection() {
           </div>
         </main>
       </div>
-    </>
+   
   );
 }
