@@ -19,7 +19,7 @@ const AIFeatureCard: FC<AIFeatureCardProps> = ({
 }) => {
   return (
     <motion.div 
-      className="bg-white p-6 rounded-xl shadow-sm"
+      className=" p-6 rounded-xl shadow-sm"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}

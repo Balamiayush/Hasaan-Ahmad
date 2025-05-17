@@ -4,6 +4,8 @@ import "./globals.css";
 
 
 
+
+
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
@@ -24,6 +26,7 @@ export default function RootLayout({
     <html lang="en" className={`font-poppins `}>
       <body  className="font-poppins antialiased">
         {children}
+
       </body>
     </html>
   );

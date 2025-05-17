@@ -70,7 +70,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="min-h-screen mt-10 lg:mt-5 bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900 overflow-hidden">
+    <div className="min-h-screen heroSection mt-10 lg:mt-5 text-white overflow-hidden">
       <Navbar />
 
       <motion.main
