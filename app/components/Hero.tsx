@@ -70,7 +70,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="min-h-screen heroSection mt-10 lg:mt-5 text-white overflow-hidden">
+    <div className="min-h-screen heroSection mt-10 lg:mt-10 text-white overflow-hidden">
       <Navbar />
 
       <motion.main
@@ -83,7 +83,7 @@ const Hero = () => {
         <div className="space-y-8 text-center lg:text-left">
           <motion.h1
             variants={item}
-            className="text-4xl md:text-[6vw] font-bold leading-[80px]"
+            className="text-4xl md:text-[6vw] font-bold lg:leading-[85px]"
           >
             <motion.span
               variants={gradientPulse}
@@ -105,7 +105,7 @@ const Hero = () => {
 
           <motion.p
             variants={item}
-            className="text-base sm:text-sm md:text-[15px] text-gray-600 max-w-xl mx-auto lg:mx-0"
+            className=" text-sm lg:text-[18px] text-gray-600 max-w-xl mx-auto lg:mx-0"
           >
             Centralize operations, automate workflows, and boost productivity
             with{" "}
