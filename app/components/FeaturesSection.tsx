@@ -12,7 +12,7 @@ type FeatureCardProps = {
 const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description, index }) => {
   return (
     <motion.div
-      className="group relative h-full rounded-xl border border-gray-200 bg-white/50 p-6 shadow-sm transition-all hover:shadow-lg dark:border-gray-800 dark:bg-gray-900/50 dark:hover:border-gray-700"
+      className="group relative h-full rounded-xl border  p-6 shadow-sm transition-all hover:shadow-lg dark:border-gray-800 dark:bg-gray-900/50 dark:hover:border-gray-700"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}

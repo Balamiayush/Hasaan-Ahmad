@@ -177,7 +177,7 @@ const KanbanBoard: FC = () => {
 
 const VisualProjectManagement: FC = () => {
   return (
-    <section className=" bg-[#121212] overflow-hidden relative z-100 ">
+    <section className=" bg-white overflow-hidden relative z-100 ">
       {/* Dots in corners */}
 
       
