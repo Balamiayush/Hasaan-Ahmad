@@ -8,7 +8,7 @@ export default function PricingSection() {
 
   return (
 
-      <div className="relative bg-[#121212] font-inter antialiased">
+      <div className="relative bg-white  font-inter antialiased">
         <main className="relative min-h-screen flex flex-col justify-center  overflow-hidden">
           <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-24">
 

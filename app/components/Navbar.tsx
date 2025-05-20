@@ -43,7 +43,7 @@ const Navbar = () => {
         y: isNavbarVisible ? 0 : -20 
       }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className="w-full fixed top-0 z-50 navbar bg-black/80 backdrop-blur-lg border-b border-gray-800"
+      className="w-full fixed top-0 z-50 navbar "
     >
       <div className=" py-4 mx-auto flex justify-between items-center max-w-7xl">
         {/* Logo */}
@@ -67,7 +67,7 @@ const Navbar = () => {
                   variants={{ hover: { y: -20 } }}
                   initial={{ y: 0 }}
                   transition={{ duration: 0.3 }}
-                  className={`block ${selectedTab === tab ? 'text-[#7C3AED]' : 'text-white'}`}
+                  className={`block ${selectedTab === tab ? 'text-[#7C3AED]' : 'text-black'}`}
                 >
                   {tab}
                 </motion.span>
