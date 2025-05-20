@@ -45,7 +45,7 @@ const Navbar = () => {
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className="w-full fixed top-0 z-50 navbar "
     >
-      <div className=" py-4 mx-auto flex justify-between items-center max-w-7xl">
+      <div className=" py-4 mx-auto bg-white flex justify-between items-center max-w-7xl">
         {/* Logo */}
         <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.2 }}>
           <Link href="/" className="text-xl font-semibold text-[#7C3AED]">
@@ -75,7 +75,7 @@ const Navbar = () => {
                   variants={{ hover: { y: -20 } }}
                   initial={{ y: 20 }}
                   transition={{ duration: 0.3 }}
-                  className={`absolute left-0 inline-block ${selectedTab === tab ? 'text-[#7C3AED]' : 'text-white'}`}
+                  className={`absolute left-0 inline-block ${selectedTab === tab ? 'text-[#7C3AED]' : 'text-black'}`}
                 >
                   {tab}
                 </motion.span>

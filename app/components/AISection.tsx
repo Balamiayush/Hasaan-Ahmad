@@ -12,49 +12,52 @@ interface AIFeatureCardProps {
 const AIFeatureCard: FC<AIFeatureCardProps> = ({ title, description, icon, index }) => {
   return (
     <motion.div
-      className="group relative h-full rounded-xl border border-gray-800 bg-gradient-to-b from-gray-900 to-gray-950 p-6 shadow-lg transition-all hover:border-purple-500/30 hover:shadow-purple-500/10"
+      className="group relative h-full rounded-2xl border border-gray-200 bg-white p-6 shadow-md transition-all hover:shadow-xl overflow-hidden"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      whileHover={{ y: -5 }}
+      whileHover={{ y: -6, scale: 1.03 }}
     >
-      <div className="absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-500/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-      
-      <div className="relative z-10">
-        <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 text-white shadow-lg">
-          {icon}
-        </div>
-        <h3 className="mb-3 text-xl font-semibold text-white">{title}</h3>
-        <p className="mb-6 text-gray-400">{description}</p>
-        
-        <div className="h-1.5 w-full rounded-full bg-gray-800">
-          <motion.div
-            className="h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500"
-            initial={{ width: 0 }}
-            whileInView={{ width: `${70 + (index * 5)}%` }}
-            transition={{ duration: 1, delay: index * 0.2 }}
-            viewport={{ once: true }}
-          />
-        </div>
-        
-        <motion.div 
-          className="mt-4 inline-flex items-center text-sm font-medium text-purple-400"
-          whileHover={{ x: 4 }}
-          transition={{ type: 'spring', stiffness: 300 }}
-        >
-          Explore feature
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="ml-1 h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </motion.div>
+      {/* Gradient border on hover */}
+      <div className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gradient-to-br group-hover:from-purple-400 group-hover:to-indigo-400 transition-all duration-400" />
+
+      <motion.div
+        className="relative z-10 mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-purple-100 to-indigo-100 text-purple-600 shadow"
+        whileHover={{ rotate: 8, scale: 1.1 }}
+        transition={{ duration: 0.4, type: 'tween', ease: 'easeInOut' }}
+      >
+        {icon}
+      </motion.div>
+      <h3 className="mb-2 text-lg font-bold text-gray-900">{title}</h3>
+      <p className="mb-4 text-gray-600">{description}</p>
+      <div className="h-1.5 w-full rounded-full bg-gray-100">
+        <motion.div
+          className="h-1.5 rounded-full bg-gradient-to-r from-purple-400 to-indigo-400"
+          initial={{ width: 0 }}
+          whileInView={{ width: `${70 + (index * 5)}%` }}
+          transition={{ duration: 1, delay: index * 0.2 }}
+          viewport={{ once: true }}
+        />
       </div>
+      <motion.a
+        className="mt-4 inline-flex items-center text-sm font-medium text-purple-600 hover:text-indigo-600 transition-colors"
+        whileHover={{ x: 4 }}
+        transition={{ duration: 0.4, type: 'tween', ease: 'easeInOut' }}
+        href="#"
+        tabIndex={0}
+      >
+        Explore feature
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="ml-1 h-4 w-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </motion.a>
     </motion.div>
   );
 };
@@ -100,37 +103,37 @@ const AISection: FC = () => {
   ];
 
   return (
-    <section className="relative bg-[#121212] overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-white overflow-hidden py-16 px-4 sm:px-6 lg:px-8">
       {/* Background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_farthest-side,rgba(139,92,246,0.15),rgba(255,255,255,0))]" />
-        <div className="absolute left-0 top-1/2 h-[300px] w-[300px] -translate-y-1/2 rounded-full bg-[radial-gradient(circle_farthest-side,rgba(139,92,246,0.15),rgba(255,255,255,0))]" />
-        <div className="absolute right-0 bottom-0 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(139,92,246,0.15),rgba(255,255,255,0))]" />
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute left-1/2 top-0 h-[350px] w-[350px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_farthest-side,rgba(139,92,246,0.08),rgba(255,255,255,0))]" />
+        <div className="absolute left-0 top-1/2 h-[180px] w-[180px] -translate-y-1/2 rounded-full bg-[radial-gradient(circle_farthest-side,rgba(139,92,246,0.07),rgba(255,255,255,0))]" />
+        <div className="absolute right-0 bottom-0 h-[220px] w-[220px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(139,92,246,0.09),rgba(255,255,255,0))]" />
       </div>
 
       <div className="mx-auto max-w-7xl">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
+            className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent">
               AI-Powered Innovation
-            </span>{' '}
+            </span>
             <br className="sm:hidden" />
             at Every Level
           </motion.h2>
           <motion.p
-            className="mt-6 text-lg leading-8 text-gray-400 max-w-3xl mx-auto"
+            className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -160,9 +163,10 @@ const AISection: FC = () => {
           viewport={{ once: true }}
         >
           <motion.button
-            className="rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg hover:from-purple-700 hover:to-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="rounded-lg bg-gradient-to-r from-purple-500 to-indigo-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg hover:from-purple-600 hover:to-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-400"
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.4, type: 'tween', ease: 'easeInOut' }}
           >
             Discover AI Capabilities
           </motion.button>

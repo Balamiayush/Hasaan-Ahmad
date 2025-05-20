@@ -66,8 +66,9 @@ const CardItem: React.FC<CardItemProps> = ({
   return (
     <div ref={containerRef} className="cardContainer">
       <motion.div
+
         style={{ scale, top: `calc(-5vh + ${index * 25}px)` }}
-        className={`card relative overflow-hidden rounded-lg p-6 ${bgColorClass} ${textColorClass}`}
+        className={`card relative overflow-hidden rounded-lg  ${bgColorClass} ${textColorClass}`}
       >
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
         <div className="body flex gap-4 flex-col md:flex-row ">

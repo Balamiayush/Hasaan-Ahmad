@@ -157,7 +157,7 @@ const CommunicationPlatform: FC = () => {
   };
 
   return (
-    <section className="py-16 px-4 bg-[#121212] overflow-hidden relative">
+    <section className="py-16 px-4 bg-white overflow-hidden relative">
       <div className="max-w-6xl mx-auto">
         <motion.div 
           className="text-center mb-10"
