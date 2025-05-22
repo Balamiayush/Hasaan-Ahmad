@@ -81,7 +81,7 @@ const Hero = () => {
         <div className="space-y-8 text-center lg:text-left">
           <motion.h1
             variants={item}
-            className="text-4xl md:text-[6vw] font-bold lg:leading-[85px]"
+            className="text-4xl md:text-[7vw] font-bold lg:leading-[85px]"
           >
             <motion.span
               variants={gradientPulse}
